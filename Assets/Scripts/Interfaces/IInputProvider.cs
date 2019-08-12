@@ -6,4 +6,5 @@
     float ProvideMoveInputX();
 
     bool ProvideWantsToRunInput();
+    bool ProvidePrimaryActionInput();
 }
