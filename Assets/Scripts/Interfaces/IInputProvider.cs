@@ -4,4 +4,6 @@
 
     float ProvideMoveInputY();
     float ProvideMoveInputX();
+
+    bool ProvideWantsToRunInput();
 }

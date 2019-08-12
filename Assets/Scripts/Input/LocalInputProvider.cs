@@ -31,6 +31,10 @@ class LocalInputProvider : IInputProvider, IInitializable, ILateDisposable {
         return Input.GetAxis("Horizontal");
     }
 
+    public bool ProvideWantsToRunInput() {
+        return Input.GetButton("Run");
+    }
+
     public void LateDispose() {
         Cursor.lockState = CursorLockMode.None;
     }
