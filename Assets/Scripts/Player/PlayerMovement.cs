@@ -4,10 +4,14 @@ using Zenject;
 public class PlayerMovement : MonoBehaviour {
     private IInputProvider inputProvider;
 
+    private float currentMovementSpeed;
+    private float currentMovementSpeedDampingVelocity;
+
     [SerializeField]
     private CharacterController characterController;
 
     public float movementSpeed;
+    public float runMovementSpeedModifier = 1.5f;
 
     [Inject]
     private void Init(IInputProvider inputProvider) {
@@ -15,6 +19,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Awake() {
+        currentMovementSpeed = movementSpeed;
+
         if (characterController == null) {
             characterController = GetComponent<CharacterController>();
         }
@@ -32,7 +38,7 @@ public class PlayerMovement : MonoBehaviour {
         var sidewaysMovement = transform.right * moveX;
 
         var unifiedMovement = (forwardsMovement + sidewaysMovement);
-        var clampedMovementMagnitude = Mathf.Clamp01(unifiedMovement.magnitude) * movementSpeed;
+        var clampedMovementMagnitude = Mathf.Clamp01(unifiedMovement.magnitude) * GetMovementSpeed();
 
         /*
             If we don't multiply by the clamped movement magnitude, we will lose
@@ -43,5 +49,21 @@ public class PlayerMovement : MonoBehaviour {
         */
         var normalizedMovement = unifiedMovement.normalized * clampedMovementMagnitude;
         characterController.SimpleMove(normalizedMovement);
+    }
+
+    private float GetMovementSpeed() {
+        var wantsToRun = inputProvider.ProvideWantsToRunInput();
+        var targetSpeed = wantsToRun
+            ? movementSpeed * runMovementSpeedModifier
+            : movementSpeed;
+
+        currentMovementSpeed = Mathf.SmoothDamp(
+            currentMovementSpeed,
+            targetSpeed,
+            ref currentMovementSpeedDampingVelocity,
+            0.5f
+        );
+
+        return currentMovementSpeed;
     }
 }
