@@ -4,11 +4,11 @@ using UnityEngine;
 using Zenject;
 
 class LocalInputProvider : IInputProvider, IInitializable, ILateDisposable {
-    private readonly float inputSensibility;
+    private readonly float _inputSensibility;
 
     [Inject]
     public LocalInputProvider(IGameSettingsProvider settingsProvider) {
-        inputSensibility = settingsProvider.InputSettings.MouseSensitivity;
+        _inputSensibility = settingsProvider.InputSettings.MouseSensitivity;
     }
 
     public void Initialize() {
@@ -16,11 +16,11 @@ class LocalInputProvider : IInputProvider, IInitializable, ILateDisposable {
     }
 
     public float ProvideLookInputY() {
-        return Input.GetAxis("Mouse Y") * inputSensibility;
+        return Input.GetAxis("Mouse Y") * _inputSensibility;
     }
 
     public float ProvideLookInputX() {
-        return Input.GetAxis("Mouse X") * inputSensibility;
+        return Input.GetAxis("Mouse X") * _inputSensibility;
     }
 
     public float ProvideMoveInputY() {

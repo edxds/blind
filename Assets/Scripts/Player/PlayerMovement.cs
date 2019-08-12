@@ -2,10 +2,10 @@
 using Zenject;
 
 public class PlayerMovement : MonoBehaviour {
-    private IInputProvider inputProvider;
+    private IInputProvider _inputProvider;
 
-    private float currentMovementSpeed;
-    private float currentMovementSpeedDampingVelocity;
+    private float _currentMovementSpeed;
+    private float _currentMovementSpeedDampingVelocity;
 
     [SerializeField]
     private CharacterController characterController;
@@ -15,11 +15,11 @@ public class PlayerMovement : MonoBehaviour {
 
     [Inject]
     private void Init(IInputProvider inputProvider) {
-        this.inputProvider = inputProvider;
+        this._inputProvider = inputProvider;
     }
 
     private void Awake() {
-        currentMovementSpeed = movementSpeed;
+        _currentMovementSpeed = movementSpeed;
 
         if (characterController == null) {
             characterController = GetComponent<CharacterController>();
@@ -31,8 +31,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void MoveCharacterBasedOnInput() {
-        var moveY = inputProvider.ProvideMoveInputY();
-        var moveX = inputProvider.ProvideMoveInputX();
+        var moveY = _inputProvider.ProvideMoveInputY();
+        var moveX = _inputProvider.ProvideMoveInputX();
 
         var forwardsMovement = transform.forward * moveY;
         var sidewaysMovement = transform.right * moveX;
@@ -52,18 +52,18 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private float GetMovementSpeed() {
-        var wantsToRun = inputProvider.ProvideWantsToRunInput();
+        var wantsToRun = _inputProvider.ProvideWantsToRunInput();
         var targetSpeed = wantsToRun
             ? movementSpeed * runMovementSpeedModifier
             : movementSpeed;
 
-        currentMovementSpeed = Mathf.SmoothDamp(
-            currentMovementSpeed,
+        _currentMovementSpeed = Mathf.SmoothDamp(
+            _currentMovementSpeed,
             targetSpeed,
-            ref currentMovementSpeedDampingVelocity,
+            ref _currentMovementSpeedDampingVelocity,
             0.5f
         );
 
-        return currentMovementSpeed;
+        return _currentMovementSpeed;
     }
 }
