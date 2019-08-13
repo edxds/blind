@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1656565223776211806}
   - component: {fileID: 1656565223776211807}
+  - component: {fileID: 8439794609192403601}
   m_Layer: 0
   m_Name: Projector_SoundRing
   m_TagString: Untagged
@@ -50,3 +51,17 @@ Projector:
   m_IgnoreLayers:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &8439794609192403601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656565223776211804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a44204cc369462189a8a671c764c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetYPosition: 100
+  animationDuration: 3
