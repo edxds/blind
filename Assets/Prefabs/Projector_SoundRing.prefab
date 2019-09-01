@@ -64,4 +64,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetYPosition: 100
-  animationDuration: 3
+  animationDuration: 5
