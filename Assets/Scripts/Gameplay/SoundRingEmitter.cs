@@ -13,6 +13,7 @@ public class SoundRingEmitter : MonoBehaviour {
     
     private IInputProvider _inputProvider;
 
+    public float emissionTimeout = 0.3f;
     public Transform playerTransform;
     public GameObject soundRingProjectorPrefab;
 
@@ -32,7 +33,7 @@ public class SoundRingEmitter : MonoBehaviour {
         InstantiateSoundRing();
         _onTimeout = true;
         
-        await Task.Delay(TimeSpan.FromSeconds(0.3));
+        await Task.Delay(TimeSpan.FromSeconds(emissionTimeout));
         _onTimeout = false;
     }
     
