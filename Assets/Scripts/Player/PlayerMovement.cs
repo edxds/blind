@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     private CharacterController characterController;
 
+    [SerializeField] 
+    private SoundRingEmitter _soundRingEmitter;
+
     public float movementSpeed;
     public float runMovementSpeedModifier = 1.5f;
 
@@ -24,10 +27,16 @@ public class PlayerMovement : MonoBehaviour {
         if (characterController == null) {
             characterController = GetComponent<CharacterController>();
         }
+        
+        if (_soundRingEmitter == null)
+            _soundRingEmitter = GetComponent<SoundRingEmitter>();
     }
 
     private void Update() {
         MoveCharacterBasedOnInput();
+        
+        if (_inputProvider.ProvidePrimaryActionInput())
+            _soundRingEmitter.EmitSoundRing();
     }
 
     private void MoveCharacterBasedOnInput() {

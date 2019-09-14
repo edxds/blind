@@ -25,12 +25,7 @@ public class SoundRingEmitter : MonoBehaviour {
         _dynamicGameObjectsParent = GameObject.FindWithTag(_dynamicGameObjectsTag);
     }
 
-    private void Update() {
-        if (_inputProvider.ProvidePrimaryActionInput())
-            EmitSoundRing();
-    }
-
-    private async void EmitSoundRing() {
+    public async void EmitSoundRing() {
         if (_onTimeout)
             return;
         
