@@ -2,6 +2,7 @@
     Properties {
         _ShadowTex ("Cookie", 2D) = "white" {}
         _FalloffTex ("FallOff", 2D) = "white" {}
+        _Opacity ("Opacity", Range (0, 1)) = 1
     }
     Subshader {
         Tags {"Queue"="Transparent"}
@@ -39,6 +40,7 @@
            
             sampler2D _ShadowTex;
             sampler2D _FalloffTex;
+            float _Opacity;
            
             fixed4 frag (v2f i) : SV_Target
             {
@@ -47,6 +49,7 @@
  
                 fixed4 res = texS;
                 res.a *= texF.a;
+                res.a *= _Opacity;
  
                 UNITY_APPLY_FOG(i.fogCoord, res);
                 return res;
