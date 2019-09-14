@@ -14,7 +14,7 @@ public class SoundRingEmitter : MonoBehaviour {
     private IInputProvider _inputProvider;
 
     public float emissionTimeout = 0.3f;
-    public Transform playerTransform;
+    public Transform emissionSource;
     public GameObject soundRingProjectorPrefab;
 
     [Inject]
@@ -40,7 +40,7 @@ public class SoundRingEmitter : MonoBehaviour {
     private void InstantiateSoundRing() {
         Instantiate(
             soundRingProjectorPrefab,
-            playerTransform.position,
+            emissionSource.position,
             Quaternion.Euler(90, 0, 0),
             _dynamicGameObjectsParent.transform
         );
