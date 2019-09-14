@@ -360,6 +360,26 @@ Transform:
   m_Father: {fileID: 585259296}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &251391895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 99c1dcd610b464accbd1e8e46c534842,
+    type: 3}
+  m_PrefabInstance: {fileID: 1519665144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &251391900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251391895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6a138dc6ac64ea8b06332f843ed93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preposition: no
+  title: Quarto
 --- !u!1 &289297548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,6 +1402,7 @@ GameObject:
   - component: {fileID: 647340050}
   - component: {fileID: 647340051}
   - component: {fileID: 647340052}
+  - component: {fileID: 647340053}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1420,6 +1441,7 @@ Transform:
   m_Children:
   - {fileID: 1738754711}
   - {fileID: 55888996}
+  - {fileID: 1738475785}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -1476,6 +1498,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d8ec6f67b0c2e4488a0b76d5e18c8531, type: 3}
   - {fileID: 8300000, guid: 65b22bf1bbdb24320a78e4a57093f667, type: 3}
   - {fileID: 8300000, guid: 1c679d0460c184d67957d02e988d8570, type: 3}
+--- !u!114 &647340053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647340047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1324c41d294c147719f67551075a7cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _checkFrom: {fileID: 1738475785}
 --- !u!1 &654286372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,6 +1602,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654286372}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &666910416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 99c1dcd610b464accbd1e8e46c534842,
+    type: 3}
+  m_PrefabInstance: {fileID: 1655784184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &666910421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666910416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6a138dc6ac64ea8b06332f843ed93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preposition: na
+  title: Sala de Estar
 --- !u!1 &668000105
 GameObject:
   m_ObjectHideFlags: 0
@@ -3921,6 +3976,36 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 07b466c413b1148e6bf960d488dfc05f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99c1dcd610b464accbd1e8e46c534842, type: 3}
+--- !u!1 &1738475784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738475785}
+  m_Layer: 0
+  m_Name: RoomCheckOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1738475785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738475784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 647340049}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1738754710
 GameObject:
   m_ObjectHideFlags: 0
@@ -4108,6 +4193,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828210007}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1892921055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 1c1687ee358f94a579a1dd3924af269b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1603596690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1892921060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892921055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6a138dc6ac64ea8b06332f843ed93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preposition: no
+  title: Corredor
 --- !u!1 &1953752868
 GameObject:
   m_ObjectHideFlags: 0
