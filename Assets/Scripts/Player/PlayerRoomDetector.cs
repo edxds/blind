@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -9,8 +10,10 @@ public class PlayerRoomDetector : MonoBehaviour {
 
     [SerializeField] 
     private Transform _checkFrom;
-    private Room _currentRoom;
-
+    
+    private readonly Subject<Room> _room = new Subject<Room>();
+    public IObservable<Room> Room => _room; 
+    
     [Inject]
     private void Init(IInputProvider inputProvider) {
         _inputProvider = inputProvider;
@@ -33,6 +36,6 @@ public class PlayerRoomDetector : MonoBehaviour {
             return;
 
         var room = hit.collider.GetComponent<Room>();
-        _currentRoom = room;
+        _room.OnNext(room);
     }
 }
