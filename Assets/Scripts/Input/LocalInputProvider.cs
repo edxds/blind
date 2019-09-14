@@ -38,6 +38,10 @@ class LocalInputProvider : IInputProvider, IInitializable, ILateDisposable {
     public bool ProvidePrimaryActionInput() {
         return Input.GetButton("PrimaryAction");
     }
+
+    public bool ProvidePrimaryActionInputDown() {
+        return Input.GetButtonDown("PrimaryAction");
+    }
     
     public void LateDispose() {
         Cursor.lockState = CursorLockMode.None;

@@ -7,4 +7,5 @@
 
     bool ProvideWantsToRunInput();
     bool ProvidePrimaryActionInput();
+    bool ProvidePrimaryActionInputDown();
 }

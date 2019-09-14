@@ -20,7 +20,7 @@ public class PlayerRoomDetector : MonoBehaviour {
     }
 
     private void Update() {
-        if (_inputProvider.ProvidePrimaryActionInput())
+        if (_inputProvider.ProvidePrimaryActionInputDown())
             CheckIfIsInRoom();
     }
 
