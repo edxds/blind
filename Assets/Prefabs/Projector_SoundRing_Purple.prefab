@@ -63,5 +63,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a44204cc369462189a8a671c764c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetYPosition: 100
-  animationDuration: 5
+  targetYPosition: 20
+  animationDuration: 8
