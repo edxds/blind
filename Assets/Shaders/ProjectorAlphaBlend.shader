@@ -2,6 +2,7 @@
     Properties {
         _ShadowTex ("Cookie", 2D) = "white" {}
         _FalloffTex ("FallOff", 2D) = "white" {}
+        _TintColor ("Color", Color) = (1, 1, 1, 1)
         _Opacity ("Opacity", Range (0, 1)) = 1
     }
     Subshader {
@@ -40,6 +41,7 @@
            
             sampler2D _ShadowTex;
             sampler2D _FalloffTex;
+            float4 _TintColor;
             float _Opacity;
            
             fixed4 frag (v2f i) : SV_Target
@@ -48,6 +50,10 @@
                 fixed4 texF = tex2Dproj (_FalloffTex, UNITY_PROJ_COORD(i.uvFalloff));
  
                 fixed4 res = texS;
+                
+                _TintColor.a = 0;
+                res += _TintColor;
+                
                 res.a *= texF.a;
                 res.a *= _Opacity;
  
