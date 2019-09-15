@@ -408,6 +408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7002370afdad94db4a5a5551a66a3ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 92341299}
+  _talkingClip: {fileID: 8300000, guid: 29bb4d4d14aae44328c276494e1b47e2, type: 3}
   _interactable: {fileID: 92341304}
   _goal: {fileID: 92341303}
   waitTime: 5

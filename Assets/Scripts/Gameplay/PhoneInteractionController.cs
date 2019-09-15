@@ -5,6 +5,10 @@ using UniRx;
 using UnityEngine;
 
 public class PhoneInteractionController : MonoBehaviour {
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioLowPassFilter _audioLowPassFilter;
+    [SerializeField] private AudioClip _talkingClip;
+    
     [SerializeField] private Interactable _interactable;
     [SerializeField] private Goal _goal;
 
@@ -28,9 +32,18 @@ public class PhoneInteractionController : MonoBehaviour {
     }
 
     private IEnumerator OnInteraction() {
-        // Do whatever...
+        _audioSource.Stop();
+        if (_audioLowPassFilter != null)
+            _audioLowPassFilter.enabled = false;
+
+        _audioSource.spatialBlend = 0;
+        _audioSource.volume = 1;
+        _audioSource.panStereo = -1;
+        _audioSource.PlayOneShot(_talkingClip);
         
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(_talkingClip.length);
+        
         _goal.Finish();
+        _audioLowPassFilter.enabled = true;
     }
 }
