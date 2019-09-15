@@ -3384,8 +3384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0248a120620924eedbe0acf3be1f60f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewModel: {fileID: 1119547666}
-  courseUIGroup: {fileID: 0}
+  state: {fileID: 1119547666}
+  courseUIGroup: {fileID: 1412212966}
   locationUpperTitle: {fileID: 157398457}
   locationTitle: {fileID: 345414390}
   goalTitle: {fileID: 1122056703}

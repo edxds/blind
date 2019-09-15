@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using Observer = UniRx.Observer;
 
-public class PlaygroundViewModel : MonoBehaviour {
+public class CourseState : MonoBehaviour {
     [SerializeField] private PlayerRoomDetector _roomDetector;
     [SerializeField] private PlayerInteractionDetector _interactionDetector;
     [SerializeField] private Goal _mainGoal;

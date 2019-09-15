@@ -6,7 +6,7 @@ using UniRx;
 using UnityEngine;
 
 public class PlaygroundUIController : MonoBehaviour {
-    public PlaygroundViewModel viewModel;
+    public CourseState state;
 
     public CanvasGroup courseUIGroup;
     
@@ -19,19 +19,19 @@ public class PlaygroundUIController : MonoBehaviour {
     public TextMeshProUGUI interactionTitle;
     
     private void Start() {
-        viewModel.OnGoalStart
+        state.OnGoalStart
             .Do(_ => UpdateCanvasGroupAlpha(courseUIGroup, 0))
             .Subscribe()
             .AddTo(this);
         
-        UpdateElementVisibilityFromObservable(locationTitle, viewModel.ShouldShowLocation);
-        UpdateElementVisibilityFromObservable(interactionTitle, viewModel.ShouldShowInteraction);
+        UpdateElementVisibilityFromObservable(locationTitle, state.ShouldShowLocation);
+        UpdateElementVisibilityFromObservable(interactionTitle, state.ShouldShowInteraction);
 
-        UpdateElementTextFromObservable(locationUpperTitle, viewModel.CurrentRoomUpperTitle);
-        UpdateElementTextFromObservable(locationTitle, viewModel.CurrentRoomTitle);
-        UpdateElementTextFromObservable(interactionUpperTitle, viewModel.CurrentInteractionUpperTitle);
-        UpdateElementTextFromObservable(interactionTitle, viewModel.CurrentInteractionTitle);
-        UpdateElementTextFromObservable(goalTitle, viewModel.CurrentGoalTitle);
+        UpdateElementTextFromObservable(locationUpperTitle, state.CurrentRoomUpperTitle);
+        UpdateElementTextFromObservable(locationTitle, state.CurrentRoomTitle);
+        UpdateElementTextFromObservable(interactionUpperTitle, state.CurrentInteractionUpperTitle);
+        UpdateElementTextFromObservable(interactionTitle, state.CurrentInteractionTitle);
+        UpdateElementTextFromObservable(goalTitle, state.CurrentGoalTitle);
     }
 
     private void UpdateElementTextFromObservable(TMP_Text element, IObservable<string> observable) {
