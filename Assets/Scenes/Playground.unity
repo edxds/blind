@@ -1898,8 +1898,11 @@ GameObject:
   - component: {fileID: 777474588}
   - component: {fileID: 777474587}
   - component: {fileID: 777474586}
+  - component: {fileID: 777474594}
   - component: {fileID: 777474591}
   - component: {fileID: 777474590}
+  - component: {fileID: 777474593}
+  - component: {fileID: 777474592}
   m_Layer: 0
   m_Name: Audio Player
   m_TagString: Untagged
@@ -2010,6 +2013,46 @@ MonoBehaviour:
   emissionSource: {fileID: 777474589}
   soundRingProjectorPrefab: {fileID: 1656565223776211804, guid: 8b89f699dce434e26b4d55309f6a4520,
     type: 3}
+--- !u!114 &777474592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777474585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00cacddac9f0c4066bf32f9296bad093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactable: {fileID: 777474593}
+  _audioSource: {fileID: 473483068}
+--- !u!114 &777474593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777474585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c84ef65feb549aebceb7b1243f190c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionTitle: "Pausar a M\xFAsica"
+--- !u!135 &777474594
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777474585}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: -0.8, y: 0.8, z: 0}
 --- !u!1 &782711567
 GameObject:
   m_ObjectHideFlags: 0
