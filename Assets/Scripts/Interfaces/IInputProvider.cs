@@ -8,4 +8,6 @@
     bool ProvideWantsToRunInput();
     bool ProvidePrimaryActionInput();
     bool ProvidePrimaryActionInputDown();
+    bool ProvideInteractionInput();
+    bool ProvideInteractionInputDown();
 }
