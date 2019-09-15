@@ -8,6 +8,7 @@ public class PhoneInteractionController : MonoBehaviour {
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioLowPassFilter _audioLowPassFilter;
     [SerializeField] private AudioClip _talkingClip;
+    [SerializeField] private AudioRingEmitterController _audioRingEmitterController;
     
     [SerializeField] private Interactable _interactable;
     [SerializeField] private Goal _goal;
@@ -35,6 +36,8 @@ public class PhoneInteractionController : MonoBehaviour {
         _goal.StartGoal();
         
         _audioSource.Stop();
+        _audioRingEmitterController.StopEmitting();
+        
         if (_audioLowPassFilter != null)
             _audioLowPassFilter.enabled = false;
 

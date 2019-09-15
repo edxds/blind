@@ -414,6 +414,7 @@ MonoBehaviour:
   _audioSource: {fileID: 92341299}
   _audioLowPassFilter: {fileID: 92341301}
   _talkingClip: {fileID: 8300000, guid: 29bb4d4d14aae44328c276494e1b47e2, type: 3}
+  _audioRingEmitterController: {fileID: 92341307}
   _interactable: {fileID: 92341304}
   _goal: {fileID: 92341303}
   waitTime: 5
