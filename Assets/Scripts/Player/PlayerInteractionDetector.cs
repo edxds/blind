@@ -35,7 +35,14 @@ public class PlayerInteractionDetector : MonoBehaviour {
     }
 
     private void TryInteract() {
-        if (_currentInteractableInstance != null)
-            _currentInteractableInstance.Interact();
+        if (_currentInteractableInstance == null)
+            return;
+        
+        _currentInteractableInstance.Interact();
+        
+        // Because interaction titles may be updated after an interaction,
+        // we call onNext to make sure listeners get an updated version of
+        // the Interactable MonoBehaviour.
+        _currentInteractable.OnNext(_currentInteractableInstance);
     }
 }
