@@ -2277,7 +2277,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175ee7dc5d050a34bb056445255adb59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 647340048}
+  _courseState: {fileID: 1119547666}
+  _characterController: {fileID: 0}
   _soundRingEmitter: {fileID: 0}
   movementSpeed: 2
   runMovementSpeedModifier: 2

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UniRx;
+using UnityEngine;
 using Zenject;
 
 public class PlayerMovement : MonoBehaviour {
@@ -6,7 +8,9 @@ public class PlayerMovement : MonoBehaviour {
 
     private float _currentMovementSpeed;
     private float _currentMovementSpeedDampingVelocity;
-
+    private bool _didStartInteractingWithGoal;
+    
+    [SerializeField] private CourseState _courseState;
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private SoundRingEmitter _soundRingEmitter;
 
@@ -29,7 +33,17 @@ public class PlayerMovement : MonoBehaviour {
             _soundRingEmitter = GetComponent<SoundRingEmitter>();
     }
 
+    private void Start() {
+        _courseState.OnGoalStart
+            .Do(_ => _didStartInteractingWithGoal = true)
+            .Subscribe()
+            .AddTo(this);
+    }
+
     private void Update() {
+        if (_didStartInteractingWithGoal)
+            return;
+        
         MoveCharacterBasedOnInput();
         
         if (_inputProvider.ProvidePrimaryActionInput())
