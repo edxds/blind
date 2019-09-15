@@ -254,6 +254,8 @@ GameObject:
   - component: {fileID: 92341303}
   - component: {fileID: 92341302}
   - component: {fileID: 92341305}
+  - component: {fileID: 92341306}
+  - component: {fileID: 92341307}
   m_Layer: 0
   m_Name: Phone
   m_TagString: Untagged
@@ -367,7 +369,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 22, y: 1, z: -54}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 152450301}
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -453,6 +456,36 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: -0.8, y: 0.8, z: 0}
+--- !u!114 &92341306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92341298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e0a68533ebb4029b02cc31c36c7881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emissionTimeout: 0
+  emissionSource: {fileID: 152450301}
+  soundRingProjectorPrefab: {fileID: 1656565223776211804, guid: c0dad7f6e9a914fedbccc505860ffa29,
+    type: 3}
+--- !u!114 &92341307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92341298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 963b08af796dd456cb56fad4f8fcdfe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundRingEmitter: {fileID: 92341306}
+  interval: 2.5
 --- !u!1 &107957343
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +615,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115494206}
   m_CullTransparentMesh: 0
+--- !u!1 &152450300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 152450301}
+  m_Layer: 0
+  m_Name: EmissionSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &152450301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152450300}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 92341300}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &157398455
 GameObject:
   m_ObjectHideFlags: 0
