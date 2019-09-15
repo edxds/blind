@@ -67,4 +67,5 @@ MonoBehaviour:
   animationDuration: 8
   initialOpacity: 0.8
   finalOpacity: 0
+  fadeinDuration: 0.5
   timeUntilFadeout: 0

@@ -65,4 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetYPosition: 100
   animationDuration: 5
+  initialOpacity: 1
+  finalOpacity: 0
+  fadeinDuration: 0.5
   timeUntilFadeout: 4

@@ -23,6 +23,7 @@ public class SoundRingAnimator : MonoBehaviour {
 
     public float initialOpacity = 1f;
     public float finalOpacity = 0f;
+    public float fadeinDuration = 0.5f;
     public float timeUntilFadeout;
 
     private void Awake() {
@@ -42,7 +43,7 @@ public class SoundRingAnimator : MonoBehaviour {
             return;
         }
 
-        _material.SetFloat(_opacityPropertyId, initialOpacity);
+        _material.SetFloat(_opacityPropertyId, fadeinDuration <= 0 ? initialOpacity : 0f);
     }
 
     private void Start() {
@@ -61,6 +62,9 @@ public class SoundRingAnimator : MonoBehaviour {
 
     private void Update() {
         _currentTime += Time.deltaTime;
+        if (_currentTime <= fadeinDuration)
+            UpdateFadein();    
+        
         if (_currentTime >= timeUntilFadeout)
             UpdateFadeout();    
         
@@ -77,6 +81,20 @@ public class SoundRingAnimator : MonoBehaviour {
         Remove();
     }
 
+    private void UpdateFadein() {
+        if (!_isMaterialCompatible)
+            return;
+
+        var currentInterpolationTime = _currentTime / fadeinDuration;
+        var newOpacity = Mathf.Lerp(
+            0f,
+            initialOpacity,
+            currentInterpolationTime
+        );
+        
+        _material.SetFloat(_opacityPropertyId, newOpacity);
+    }
+    
     private void UpdateFadeout() {
         if (!_isMaterialCompatible)
             return;
