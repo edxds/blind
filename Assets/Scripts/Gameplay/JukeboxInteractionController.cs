@@ -5,10 +5,9 @@ using UniRx;
 using UnityEngine;
 
 public class JukeboxInteractionController : MonoBehaviour {
-    [SerializeField]
-    private Interactable _interactable;
-    [SerializeField]
-    private AudioSource _audioSource;
+    [SerializeField] private Interactable _interactable;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioRingEmitterController _ringEmitter;
     
     private void Awake() {
         if (_interactable == null)
@@ -16,6 +15,9 @@ public class JukeboxInteractionController : MonoBehaviour {
 
         if (_audioSource == null)
             _audioSource = GetComponentInChildren<AudioSource>();
+
+        if (_ringEmitter == null)
+            _ringEmitter = GetComponent<AudioRingEmitterController>();
     }
 
     private void Start() {
@@ -33,6 +35,13 @@ public class JukeboxInteractionController : MonoBehaviour {
             : "Tocar a Música";
     }
 
+    private void UpdateRingEmitterState() {
+        if (_audioSource.isPlaying)
+            _ringEmitter.StartEmitting();
+        else
+            _ringEmitter.StopEmitting();
+    }
+    
     private void OnInteraction() {
         if (_audioSource.isPlaying)
             _audioSource.Pause();
@@ -40,5 +49,6 @@ public class JukeboxInteractionController : MonoBehaviour {
             _audioSource.UnPause();
         
         UpdateInteractableTitle();
+        UpdateRingEmitterState();
     }
 }
