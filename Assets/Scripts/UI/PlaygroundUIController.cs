@@ -19,32 +19,21 @@ public class PlaygroundUIController : MonoBehaviour {
     private void Start() {
         UpdateElementVisibilityFromObservable(locationTitle, viewModel.ShouldShowLocation);
         UpdateElementVisibilityFromObservable(interactionTitle, viewModel.ShouldShowInteraction);
-        
-        viewModel.CurrentRoomUpperTitle
-            .Where(title => title != null)
-            .Do(title => locationUpperTitle.text = title)
-            .Subscribe()
-            .AddTo(this);
 
-        viewModel.CurrentRoomTitle
-            .Where(title => title != null)
-            .Do(title => locationTitle.text = title)
-            .Subscribe()
-            .AddTo(this);
+        UpdateElementTextFromObservable(locationUpperTitle, viewModel.CurrentRoomUpperTitle);
+        UpdateElementTextFromObservable(locationTitle, viewModel.CurrentRoomTitle);
+        UpdateElementTextFromObservable(interactionUpperTitle, viewModel.CurrentInteractionUpperTitle);
+        UpdateElementTextFromObservable(interactionTitle, viewModel.CurrentInteractionTitle);
+    }
 
-        viewModel.CurrentInteractionUpperTitle
+    private void UpdateElementTextFromObservable(TMP_Text element, IObservable<string> observable) {
+        observable
             .Where(title => title != null)
-            .Do(title => interactionUpperTitle.text = title)
-            .Subscribe()
-            .AddTo(this);
-
-        viewModel.CurrentInteractionTitle
-            .Where(title => title != null)
-            .Do(title => interactionTitle.text = title)
+            .Do(title => element.text = title)
             .Subscribe()
             .AddTo(this);
     }
-
+    
     private void UpdateElementVisibilityFromObservable(Component element, IObservable<bool> observable) {
         observable
             .Select((shouldShow, index) => {
