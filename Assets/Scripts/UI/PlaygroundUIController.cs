@@ -17,6 +17,11 @@ public class PlaygroundUIController : MonoBehaviour {
     public TextMeshProUGUI interactionTitle;
     
     private void Start() {
+        viewModel.ShouldShowLocation
+            .Do(should => UpdateElementVisibility(locationTitle, should))
+            .Subscribe()
+            .AddTo(this);
+        
         viewModel.CurrentRoomUpperTitle
             .Where(title => title != null)
             .Do(title => locationUpperTitle.text = title)
@@ -29,6 +34,11 @@ public class PlaygroundUIController : MonoBehaviour {
             .Subscribe()
             .AddTo(this);
 
+        viewModel.ShouldShowInteraction
+            .Do(should => UpdateElementVisibility(interactionTitle, should))
+            .Subscribe()
+            .AddTo(this);
+        
         viewModel.CurrentInteractionUpperTitle
             .Where(title => title != null)
             .Do(title => interactionUpperTitle.text = title)
@@ -40,5 +50,10 @@ public class PlaygroundUIController : MonoBehaviour {
             .Do(title => interactionTitle.text = title)
             .Subscribe()
             .AddTo(this);
+    }
+
+    private void UpdateElementVisibility(Component element, bool shouldShow) {
+        var parentRenderer = element.GetComponentInParent<CanvasGroup>();
+        parentRenderer.alpha = shouldShow ? 1 : 0;
     }
 }

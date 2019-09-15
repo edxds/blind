@@ -12,20 +12,27 @@ public class PlaygroundViewModel : MonoBehaviour {
 
     public string keycapSpriteName;
     
+    public IObservable<bool> ShouldShowLocation { get; private set; }
     public IObservable<string> CurrentRoomUpperTitle { get; private set; }
     public IObservable<string> CurrentRoomTitle { get; private set; }
+    
+    public IObservable<bool> ShouldShowInteraction { get; private set; }
     public IObservable<string> CurrentInteractionUpperTitle { get; private set; }
     public IObservable<string> CurrentInteractionTitle { get; private set; }
     public IObservable<Unit> OnGoalFinish { get; private set; }
     
     private void Awake() {
+        ShouldShowLocation = _roomDetector.Room
+            .StartWith((Room) null)
+            .Select(room => room != null);
+
         CurrentRoomUpperTitle = _roomDetector.Room
             .Select(
                 room => room == null
-                        ? null
-                        : $"Você está {room.preposition}"
+                    ? null
+                    : $"Você está {room.preposition}"
             );
-        
+
         CurrentRoomTitle = _roomDetector.Room
             .Select(
                 room => room == null 
@@ -33,6 +40,10 @@ public class PlaygroundViewModel : MonoBehaviour {
                     : $"{room.title}"
             );
 
+        ShouldShowInteraction = _interactionDetector.CurrentInteractable
+            .StartWith((Interactable) null)
+            .Select(interactable => interactable != null);
+        
         CurrentInteractionUpperTitle = _interactionDetector.CurrentInteractable
             .Select(
                 interactable => interactable == null 
