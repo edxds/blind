@@ -17,10 +17,8 @@ public class PlaygroundUIController : MonoBehaviour {
     public TextMeshProUGUI interactionTitle;
     
     private void Start() {
-        viewModel.ShouldShowLocation
-            .Do(should => UpdateElementVisibility(locationTitle, should))
-            .Subscribe()
-            .AddTo(this);
+        UpdateElementVisibilityFromObservable(locationTitle, viewModel.ShouldShowLocation);
+        UpdateElementVisibilityFromObservable(interactionTitle, viewModel.ShouldShowInteraction);
         
         viewModel.CurrentRoomUpperTitle
             .Where(title => title != null)
@@ -34,11 +32,6 @@ public class PlaygroundUIController : MonoBehaviour {
             .Subscribe()
             .AddTo(this);
 
-        viewModel.ShouldShowInteraction
-            .Do(should => UpdateElementVisibility(interactionTitle, should))
-            .Subscribe()
-            .AddTo(this);
-        
         viewModel.CurrentInteractionUpperTitle
             .Where(title => title != null)
             .Do(title => interactionUpperTitle.text = title)
@@ -52,8 +45,23 @@ public class PlaygroundUIController : MonoBehaviour {
             .AddTo(this);
     }
 
-    private void UpdateElementVisibility(Component element, bool shouldShow) {
-        var parentRenderer = element.GetComponentInParent<CanvasGroup>();
-        parentRenderer.alpha = shouldShow ? 1 : 0;
+    private void UpdateElementVisibilityFromObservable(Component element, IObservable<bool> observable) {
+        observable
+            .Select((shouldShow, index) => {
+                var isFirst = index == 0;
+                return (shouldShow, isFirst);
+            })
+            .Do(tuple => {
+                var (shouldShow, isFirst) = tuple;
+                UpdateElementVisibility(element, shouldShow, !isFirst);
+            })
+            .Subscribe()
+            .AddTo(this);
+    }
+    
+    private void UpdateElementVisibility(Component element, bool shouldShow, bool shouldAnimate) {
+        var fade = element.GetComponentInParent<CanvasGroupFade>();
+        var targetAlpha = shouldShow ? 1 : 0; 
+        fade.FadeTo(targetAlpha, shouldAnimate);
     }
 }
