@@ -3626,6 +3626,8 @@ MonoBehaviour:
   goalTitle: {fileID: 1122056703}
   interactionUpperTitle: {fileID: 1786390190}
   interactionTitle: {fileID: 1382116624}
+  mainMenuButton: {fileID: 2006934223}
+  exitButton: {fileID: 1255085401}
 --- !u!1 &935260318
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class CourseUIController : MonoBehaviour {
@@ -21,7 +22,10 @@ public class CourseUIController : MonoBehaviour {
 
     public TextMeshProUGUI interactionUpperTitle;
     public TextMeshProUGUI interactionTitle;
-   
+
+    public Button mainMenuButton;
+    public Button exitButton;
+    
     [Inject]
     private void Init(IInputProvider inputProvider) {
         _inputProvider = inputProvider;
@@ -37,7 +41,10 @@ public class CourseUIController : MonoBehaviour {
             .Do(
                 _ => {
                     _inputProvider.UnlockCursor();
+                    
                     courseFinishedUIGroup.interactable = true;
+                    mainMenuButton.Select();
+                    
                     UpdateCanvasGroupAlpha(courseFinishedUIGroup, 1);
                 }
             )
