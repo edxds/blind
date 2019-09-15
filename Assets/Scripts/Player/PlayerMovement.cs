@@ -7,11 +7,8 @@ public class PlayerMovement : MonoBehaviour {
     private float _currentMovementSpeed;
     private float _currentMovementSpeedDampingVelocity;
 
-    [SerializeField]
-    private CharacterController characterController;
-
-    [SerializeField] 
-    private SoundRingEmitter _soundRingEmitter;
+    [SerializeField] private CharacterController _characterController;
+    [SerializeField] private SoundRingEmitter _soundRingEmitter;
 
     public float movementSpeed;
     public float runMovementSpeedModifier = 1.5f;
@@ -24,8 +21,8 @@ public class PlayerMovement : MonoBehaviour {
     private void Awake() {
         _currentMovementSpeed = movementSpeed;
 
-        if (characterController == null) {
-            characterController = GetComponent<CharacterController>();
+        if (_characterController == null) {
+            _characterController = GetComponent<CharacterController>();
         }
         
         if (_soundRingEmitter == null)
@@ -57,7 +54,7 @@ public class PlayerMovement : MonoBehaviour {
             faster while going diagonally because of the addition of vectors.
         */
         var normalizedMovement = unifiedMovement.normalized * clampedMovementMagnitude;
-        characterController.SimpleMove(normalizedMovement);
+        _characterController.SimpleMove(normalizedMovement);
     }
 
     private float GetMovementSpeed() {
