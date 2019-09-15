@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuUIController : MonoBehaviour {
     [SerializeField] private MainMenuState _state;
@@ -25,7 +26,7 @@ public class MainMenuUIController : MonoBehaviour {
     }
 
     private void OnPlayClick(Unit _) {
-        
+        SceneManager.LoadScene("MainCourse");
     }
 
     private void OnSettingsClick(Unit _) {
