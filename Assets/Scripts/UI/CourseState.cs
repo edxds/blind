@@ -3,14 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using Observer = UniRx.Observer;
 
 public class CourseState : MonoBehaviour {
+    [SerializeField] private Button _mainMenuButton;
+    [SerializeField] private Button _exitButton;
+    
     [SerializeField] private PlayerRoomDetector _roomDetector;
     [SerializeField] private PlayerInteractionDetector _interactionDetector;
     [SerializeField] private Goal _mainGoal;
 
     public string keycapSpriteName;
+
+    public IObservable<Unit> OnMainMenuClick => _mainMenuButton.OnClickAsObservable();
+    public IObservable<Unit> OnExitClick => _exitButton.OnClickAsObservable();
     
     public IObservable<bool> ShouldShowLocation { get; private set; }
     public IObservable<string> CurrentRoomUpperTitle { get; private set; }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
@@ -32,6 +33,16 @@ public class CourseUIController : MonoBehaviour {
     }
     
     private void Start() {
+        state.OnMainMenuClick
+            .Do(OnMainMenuClicked)
+            .Subscribe()
+            .AddTo(this);
+
+        state.OnExitClick
+            .Do(OnExitClicked)
+            .Subscribe()
+            .AddTo(this);
+        
         state.OnGoalStart
             .Do(_ => UpdateCanvasGroupAlpha(courseUIGroup, 0))
             .Subscribe()
@@ -61,6 +72,18 @@ public class CourseUIController : MonoBehaviour {
         UpdateElementTextFromObservable(goalTitle, state.CurrentGoalTitle);
     }
 
+    private void OnMainMenuClicked(Unit _) {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    private void OnExitClicked(Unit _) {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+
+        Application.Quit();
+    }
+    
     private void UpdateElementTextFromObservable(TMP_Text element, IObservable<string> observable) {
         observable
             .Where(title => title != null)
