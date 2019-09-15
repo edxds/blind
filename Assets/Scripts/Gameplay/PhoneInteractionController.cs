@@ -32,6 +32,8 @@ public class PhoneInteractionController : MonoBehaviour {
     }
 
     private IEnumerator OnInteraction() {
+        _goal.StartGoal();
+        
         _audioSource.Stop();
         if (_audioLowPassFilter != null)
             _audioLowPassFilter.enabled = false;
