@@ -6,9 +6,19 @@ using UnityEngine;
 public class AudioRingEmitterController : MonoBehaviour {
     [SerializeField] 
     private SoundRingEmitter _soundRingEmitter;
+    private Coroutine _currentRoutine;
     
     public float interval;
 
+    public void StartEmitting() {
+        StopCurrentRoutine();
+        _currentRoutine = StartCoroutine(StartEmittingSoundRings());
+    }
+
+    public void StopEmitting() {
+        StopCurrentRoutine();
+    }
+    
     private void Awake() {
         if (_soundRingEmitter == null)
             _soundRingEmitter = GetComponent<SoundRingEmitter>();
@@ -17,9 +27,16 @@ public class AudioRingEmitterController : MonoBehaviour {
     }
 
     private void Start() {
-        StartCoroutine(StartEmittingSoundRings());
+        StartEmitting();
     }
 
+    private void StopCurrentRoutine() {
+        if (_currentRoutine != null)
+            StopCoroutine(_currentRoutine);
+
+        _currentRoutine = null;
+    }
+    
     private IEnumerator StartEmittingSoundRings() {
         while (true) {
             yield return new WaitForSeconds(interval);
