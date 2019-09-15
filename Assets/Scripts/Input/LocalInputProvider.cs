@@ -15,6 +15,10 @@ class LocalInputProvider : IInputProvider, IInitializable, ILateDisposable {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void UnlockCursor() {
+        Cursor.lockState = CursorLockMode.None;
+    }
+    
     public float ProvideLookInputY() {
         return Input.GetAxis("Mouse Y") * _inputSensibility;
     }

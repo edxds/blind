@@ -1,4 +1,6 @@
 ﻿public interface IInputProvider {
+    void UnlockCursor();
+    
     float ProvideLookInputY();
     float ProvideLookInputX();
 
