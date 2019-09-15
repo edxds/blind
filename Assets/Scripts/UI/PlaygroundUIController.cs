@@ -8,6 +8,8 @@ using UnityEngine;
 public class PlaygroundUIController : MonoBehaviour {
     public PlaygroundViewModel viewModel;
 
+    public CanvasGroup courseUIGroup;
+    
     public TextMeshProUGUI locationUpperTitle;
     public TextMeshProUGUI locationTitle;
 
@@ -17,6 +19,11 @@ public class PlaygroundUIController : MonoBehaviour {
     public TextMeshProUGUI interactionTitle;
     
     private void Start() {
+        viewModel.OnGoalStart
+            .Do(_ => UpdateCanvasGroupAlpha(courseUIGroup, 0))
+            .Subscribe()
+            .AddTo(this);
+        
         UpdateElementVisibilityFromObservable(locationTitle, viewModel.ShouldShowLocation);
         UpdateElementVisibilityFromObservable(interactionTitle, viewModel.ShouldShowInteraction);
 
@@ -53,5 +60,10 @@ public class PlaygroundUIController : MonoBehaviour {
         var fade = element.GetComponentInParent<CanvasGroupFade>();
         var targetAlpha = shouldShow ? 1 : 0; 
         fade.FadeTo(targetAlpha, shouldAnimate);
+    }
+
+    private void UpdateCanvasGroupAlpha(CanvasGroup group, float target) {
+        var fade = group.GetComponent<CanvasGroupFade>();
+        fade.FadeTo(target, true);
     }
 }
