@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e0c33628f9147539e97deba5ccea1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalTitle: Atender o Telefone
+  goalTitle: Atender o Celular
 --- !u!114 &92341304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c84ef65feb549aebceb7b1243f190c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionTitle: Atender o Telefone
+  actionTitle: Atender o Celular
 --- !u!135 &92341305
 SphereCollider:
   m_ObjectHideFlags: 0
