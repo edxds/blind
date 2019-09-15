@@ -5,7 +5,7 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 
-public class PlaygroundUIController : MonoBehaviour {
+public class CourseUIController : MonoBehaviour {
     public CourseState state;
 
     public CanvasGroup courseUIGroup;
