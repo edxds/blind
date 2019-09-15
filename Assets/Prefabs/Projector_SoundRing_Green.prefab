@@ -63,8 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a44204cc369462189a8a671c764c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetYPosition: 20
-  animationDuration: 5
+  targetYPosition: 10
+  animationDuration: 4
   initialOpacity: 0.8
   finalOpacity: 0
   fadeinDuration: 0.5
