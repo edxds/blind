@@ -4420,7 +4420,7 @@ GameObject:
   - component: {fileID: 1119547667}
   - component: {fileID: 1119547666}
   m_Layer: 0
-  m_Name: SceneViewModel
+  m_Name: CourseState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
