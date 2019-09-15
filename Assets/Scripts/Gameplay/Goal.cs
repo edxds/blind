@@ -7,6 +7,7 @@ using UnityEngine;
 public class Goal : MonoBehaviour {
     private readonly Subject<Unit> _onFinish = new Subject<Unit>();
 
+    public string goalTitle;
     public IObservable<Unit> OnFinish => _onFinish;
     
     public void Finish() {

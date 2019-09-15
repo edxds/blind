@@ -24,6 +24,7 @@ public class PlaygroundUIController : MonoBehaviour {
         UpdateElementTextFromObservable(locationTitle, viewModel.CurrentRoomTitle);
         UpdateElementTextFromObservable(interactionUpperTitle, viewModel.CurrentInteractionUpperTitle);
         UpdateElementTextFromObservable(interactionTitle, viewModel.CurrentInteractionTitle);
+        UpdateElementTextFromObservable(goalTitle, viewModel.CurrentGoalTitle);
     }
 
     private void UpdateElementTextFromObservable(TMP_Text element, IObservable<string> observable) {

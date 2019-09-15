@@ -19,6 +19,7 @@ public class PlaygroundViewModel : MonoBehaviour {
     public IObservable<bool> ShouldShowInteraction { get; private set; }
     public IObservable<string> CurrentInteractionUpperTitle { get; private set; }
     public IObservable<string> CurrentInteractionTitle { get; private set; }
+    public IObservable<string> CurrentGoalTitle { get; private set; }
     public IObservable<Unit> OnGoalFinish { get; private set; }
     
     private void Awake() {
@@ -58,6 +59,8 @@ public class PlaygroundViewModel : MonoBehaviour {
                     : interactable.actionTitle
             );
 
+        CurrentGoalTitle = Observable.Return(_mainGoal.goalTitle);
+        
         OnGoalFinish = _mainGoal.OnFinish;
     }
 

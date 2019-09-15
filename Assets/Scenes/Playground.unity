@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e0c33628f9147539e97deba5ccea1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalTitle: Atender o Telefone
 --- !u!114 &92341304
 MonoBehaviour:
   m_ObjectHideFlags: 0
