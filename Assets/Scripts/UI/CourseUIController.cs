@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 public class CourseUIController : MonoBehaviour {
+    private IInputProvider _inputProvider;
+    
     public CourseState state;
 
     public CanvasGroup courseUIGroup;
+    public CanvasGroup courseFinishedUIGroup;
     
     public TextMeshProUGUI locationUpperTitle;
     public TextMeshProUGUI locationTitle;
@@ -17,10 +21,26 @@ public class CourseUIController : MonoBehaviour {
 
     public TextMeshProUGUI interactionUpperTitle;
     public TextMeshProUGUI interactionTitle;
+   
+    [Inject]
+    private void Init(IInputProvider inputProvider) {
+        _inputProvider = inputProvider;
+    }
     
     private void Start() {
         state.OnGoalStart
             .Do(_ => UpdateCanvasGroupAlpha(courseUIGroup, 0))
+            .Subscribe()
+            .AddTo(this);
+
+        state.OnGoalFinish
+            .Do(
+                _ => {
+                    _inputProvider.UnlockCursor();
+                    courseFinishedUIGroup.interactable = true;
+                    UpdateCanvasGroupAlpha(courseFinishedUIGroup, 1);
+                }
+            )
             .Subscribe()
             .AddTo(this);
         
