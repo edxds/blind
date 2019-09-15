@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 92341306}
   - component: {fileID: 92341307}
   m_Layer: 0
-  m_Name: Phone
+  m_Name: '[Goal] Phone'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
