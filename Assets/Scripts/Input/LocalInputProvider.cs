@@ -23,11 +23,17 @@ class LocalInputProvider : IInputProvider, IInitializable, ILateDisposable
     }
 
     public float ProvideLookInputY() {
-        return Input.GetAxis("Mouse Y") * _inputSensibility;
+        var mouseY = Input.GetAxis("Mouse Y") * _inputSensibility;
+        var controllerY = Input.GetAxis("Controller Look Y") * _inputSensibility;
+
+        return mouseY + controllerY;
     }
 
     public float ProvideLookInputX() {
-        return Input.GetAxis("Mouse X") * _inputSensibility;
+        var mouseX = Input.GetAxis("Mouse X") * _inputSensibility;
+        var controllerX = Input.GetAxis("Controller Look X") * _inputSensibility;
+
+        return mouseX + controllerX;
     }
 
     public float ProvideMoveInputY() {
