@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-class LocalInputProvider : IInputProvider, IInitializable, ILateDisposable {
+class LocalInputProvider : IInputProvider, IInitializable, ILateDisposable
+{
     private readonly float _inputSensibility;
 
     [Inject]
@@ -13,12 +14,14 @@ class LocalInputProvider : IInputProvider, IInitializable, ILateDisposable {
 
     public void Initialize() {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void UnlockCursor() {
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
-    
+
     public float ProvideLookInputY() {
         return Input.GetAxis("Mouse Y") * _inputSensibility;
     }
