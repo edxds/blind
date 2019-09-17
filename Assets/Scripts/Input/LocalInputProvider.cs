@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-class LocalInputProvider : IInputProvider, IInitializable, ILateDisposable
-{
+class LocalInputProvider : IInputProvider, IInitializable, ILateDisposable {
     private readonly float _inputSensibility;
 
     [Inject]
