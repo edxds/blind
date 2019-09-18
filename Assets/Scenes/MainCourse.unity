@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731725, g: 0.13414752, b: 0.121078566, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731703, g: 0.13414727, b: 0.121078506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1902,7 +1902,8 @@ MonoBehaviour:
   _roomDetector: {fileID: 603767080}
   _interactionDetector: {fileID: 603767079}
   _mainGoal: {fileID: 1486165190}
-  keycapSpriteName: keycap_e_0
+  keycapSpriteName: sprite_keycap_e
+  buttonSpriteName: sprite_button_x
 --- !u!4 &2021164533
 Transform:
   m_ObjectHideFlags: 0

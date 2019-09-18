@@ -1,6 +1,10 @@
-﻿public interface IInputProvider {
+﻿using System;
+
+public interface IInputProvider {
+    IObservable<string> CurrentInputType();
+
     void UnlockCursor();
-    
+
     float ProvideLookInputY();
     float ProvideLookInputX();
 
