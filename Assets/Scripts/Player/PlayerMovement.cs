@@ -1,38 +1,64 @@
-﻿using UnityEngine;
+﻿using System;
+using UniRx;
+using UnityEngine;
 using Zenject;
 
 public class PlayerMovement : MonoBehaviour {
-    private IInputProvider inputProvider;
+    private IInputProvider _inputProvider;
 
-    [SerializeField]
-    private CharacterController characterController;
+    private float _currentMovementSpeed;
+    private float _currentMovementSpeedDampingVelocity;
+    private bool _didStartInteractingWithGoal;
+    
+    [SerializeField] private CourseState _courseState;
+    [SerializeField] private CharacterController _characterController;
+    [SerializeField] private SoundRingEmitter _soundRingEmitter;
 
     public float movementSpeed;
+    public float runMovementSpeedModifier = 1.5f;
 
     [Inject]
     private void Init(IInputProvider inputProvider) {
-        this.inputProvider = inputProvider;
+        this._inputProvider = inputProvider;
     }
 
     private void Awake() {
-        if (characterController == null) {
-            characterController = GetComponent<CharacterController>();
+        _currentMovementSpeed = movementSpeed;
+
+        if (_characterController == null) {
+            _characterController = GetComponent<CharacterController>();
         }
+        
+        if (_soundRingEmitter == null)
+            _soundRingEmitter = GetComponent<SoundRingEmitter>();
+    }
+
+    private void Start() {
+        _courseState.OnGoalStart
+            .Do(_ => _didStartInteractingWithGoal = true)
+            .Subscribe()
+            .AddTo(this);
     }
 
     private void Update() {
+        if (_didStartInteractingWithGoal)
+            return;
+        
         MoveCharacterBasedOnInput();
+        
+        if (_inputProvider.ProvidePrimaryActionInput())
+            _soundRingEmitter.EmitSoundRing();
     }
 
     private void MoveCharacterBasedOnInput() {
-        var moveY = inputProvider.ProvideMoveInputY();
-        var moveX = inputProvider.ProvideMoveInputX();
+        var moveY = _inputProvider.ProvideMoveInputY();
+        var moveX = _inputProvider.ProvideMoveInputX();
 
         var forwardsMovement = transform.forward * moveY;
         var sidewaysMovement = transform.right * moveX;
 
         var unifiedMovement = (forwardsMovement + sidewaysMovement);
-        var clampedMovementMagnitude = Mathf.Clamp01(unifiedMovement.magnitude) * movementSpeed;
+        var clampedMovementMagnitude = Mathf.Clamp01(unifiedMovement.magnitude) * GetMovementSpeed();
 
         /*
             If we don't multiply by the clamped movement magnitude, we will lose
@@ -42,6 +68,22 @@ public class PlayerMovement : MonoBehaviour {
             faster while going diagonally because of the addition of vectors.
         */
         var normalizedMovement = unifiedMovement.normalized * clampedMovementMagnitude;
-        characterController.SimpleMove(normalizedMovement);
+        _characterController.SimpleMove(normalizedMovement);
+    }
+
+    private float GetMovementSpeed() {
+        var wantsToRun = _inputProvider.ProvideWantsToRunInput();
+        var targetSpeed = wantsToRun
+            ? movementSpeed * runMovementSpeedModifier
+            : movementSpeed;
+
+        _currentMovementSpeed = Mathf.SmoothDamp(
+            _currentMovementSpeed,
+            targetSpeed,
+            ref _currentMovementSpeedDampingVelocity,
+            0.5f
+        );
+
+        return _currentMovementSpeed;
     }
 }

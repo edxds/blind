@@ -4,17 +4,17 @@ using UnityEngine;
 using Zenject;
 
 public class PlayerCamera : MonoBehaviour {
-    private IInputProvider inputProvider;
+    private IInputProvider _inputProvider;
 
     enum CameraClampDirection { up, down, none };
-    private float accumulatedInputY = 0f;
+    private float _accumulatedInputY = 0f;
 
     [SerializeField]
     private Transform playerTransform;
 
     [Inject]
     private void Init(IInputProvider inputProvider) {
-        this.inputProvider = inputProvider;
+        this._inputProvider = inputProvider;
     }
 
     private void Update() {
@@ -22,17 +22,17 @@ public class PlayerCamera : MonoBehaviour {
     }
 
     private void MoveCameraBasedOnInput() {
-        var inputY = inputProvider.ProvideLookInputY();
-        var inputX = inputProvider.ProvideLookInputX();
+        var inputY = _inputProvider.ProvideLookInputY();
+        var inputX = _inputProvider.ProvideLookInputX();
         var clampDirection = CameraClampDirection.none;
 
-        accumulatedInputY += inputY;
-        if (accumulatedInputY > 90f)
+        _accumulatedInputY += inputY;
+        if (_accumulatedInputY > 90f)
             clampDirection = CameraClampDirection.up;
-        else if (accumulatedInputY < -90f)
+        else if (_accumulatedInputY < -90f)
             clampDirection = CameraClampDirection.down;
 
-        accumulatedInputY = Mathf.Clamp(accumulatedInputY, -90f, 90f);
+        _accumulatedInputY = Mathf.Clamp(_accumulatedInputY, -90f, 90f);
         SetCameraRotationToMaximumAllowedIfNeeded(clampDirection);
 
         // Up/down movement needs to be clamped
